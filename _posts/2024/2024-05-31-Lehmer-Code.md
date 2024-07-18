@@ -8,7 +8,7 @@ toc: true
 math: true
 # comments: false
 ---
-The Lehmer Code, named in reference to [Derrick Henry Lehmer](https://en.wikipedia.org/wiki/D._H._Lehmer) is method of encoding permutations. The encoding is done in the form of an inversion table. The Lehmer Code is also known and used as the [Factorial Number System](https://en.wikipedia.org/wiki/Factorial_number_system).
+The Lehmer Code, named in reference to [Derrick Henry Lehmer](https://en.wikipedia.org/wiki/D._H._Lehmer) is method of encoding permutations. The encoding is done in the form of an inversion table. The Lehmer Code is also known and used as the [Factorial Number System](https://vrangr1.github.io/posts/Factorial-Number-System/).
 
 
 ## Description:
@@ -44,6 +44,7 @@ The **Lehmer Code**, $L(\sigma) = (L{\small(\sigma)_1,L(\sigma)_2,\ldots,L(\sigm
     $$
     Since $\sigma_1$ and $\sigma_2$ are arbitrary permutations and the contrapositive of the converse is immediate, the proof is complete.
     </details>
-- The Lehmer Code also coincides with the [Factorial Number System](https://en.wikipedia.org/wiki/Factorial_number_system) and, as such, for more properties please refer to my post on the Factorial Number System.
+- The Lehmer Code also coincides with the [Factorial Number System](https://vrangr1.github.io/posts/Factorial-Number-System/) and, as such, for more properties please refer to my post on the Factorial Number System.
 
 ## See Also:
+- [Factorial Number System](https://vrangr1.github.io/posts/Factorial-Number-System/)
