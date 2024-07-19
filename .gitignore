@@ -20,5 +20,8 @@ package-lock.json
 # Misc
 assets/js/dist
 
+# Mac
+.DS_Store
+
 # For my use
 ignored_directory/

@@ -19,7 +19,7 @@ While the set of natural numbers can also be used to index permutations in their
 <summary> Note </summary>
 While this post has been written to be self contained to a certain extent, it might be better for the reader to first perhaps read the post on the [Lehmer Code](https://vrangr1.github.io/posts/Lehmer-Code) for an introduction into the Factorial Number System.
 </details>
-The factorial number system is a mixed radix numeral system that has the following properties:  
+The factorial number system is a [mixed radix numeral system](https://en.wikipedia.org/wiki/Mixed_radix) that has the following properties:  
 
 |   **Radix / Base**   |    n   |   n-1  |   n-2  |   $\ldots$   |  3  |  2  |  1  |
 |   **Place Value**    | (n-1)! | (n-2)! | (n-3)! |   $\ldots$   |  2! |  1! |  0! | 
@@ -39,16 +39,35 @@ The above simplification of the definition of the factoradic is, in fact, the de
 - The factoradic of a permutation is the lehmer code of that permutation. As such, the factoradic also has the same properties as that of the lehmer code, the most important of which is as follows:
     - Lexicographic ordering of the lehmer codes correspond with the lexicographic ordering of the permutations. That is to say, a factoradic is lexicographically bigger than a other factoradic if and only if their corresponding permutations also have the same lexicographic ordering. The proof for this, if required, can be found [here](https://vrangr1.github.io/posts/Lehmer-Code).
 
-- Based on the definition and the table in the above section, it can be observed that for a fixed length $n$, there are $n!$ many different factoradics possible. Therefore, based on that fact and the last property, it can be trivially proved that $r^{th}$ (in 0-based indexing) lexicographically smallest permutation's factoradic is also the $r^{th}$ smallest factoradic possible. Furthermore, there's a simple way to get this $r$ from if the factoradic is provided/computed for a permutation:  
+- Based on the definition and the table in the above section, it can be observed that for a fixed length $n$, there are $n!$ many different factoradics possible. Therefore, based on that fact and the last property, it can be trivially proved that $r^{th}$ (in 0-based indexing) lexicographically smallest permutation's factoradic is also the $r^{th}$ smallest (lexicographically speaking, in 0-based indexing) factoradic possible. Furthermore, there's a simple way to get this $r$ from if the factoradic is provided/computed for a permutation:  
 $$
 r = \sum_{i=1}^n\left[\left(n-i\right)!\cdot L\left(\sigma\right)_i\right]
 $$
     <details><summary>Proof:</summary>
     This can be proven via induction.<br>
-    <b>Base Case:</b><br> It is trivial to note that the factoradic/lehmer code for the lexicographically smallest permutation i.e. $\sigma = \left(1,2,\ldots,n-1,n\right)$ is $L\left(\sigma\right) = \left(0,0,\ldots,0,0\right)$<br>
-    As such, $r = \sum_{i=1}^n\left[(n-i)!\cdot L\left(\sigma\right)\right] = 0$<br>
+    <b>Base Case:</b><br> It is trivial to note that the factoradic/lehmer code for the lexicographically smallest permutation i.e. $\sigma_{(0)} = \left(1,2,\ldots,n-1,n\right)$ is $L\left(\sigma_{(0)}\right) = \left(0,0,\ldots,0,0\right)$<br>
+    As such, $r_0 = \sum_{i=1}^n\left[(n-i)!\cdot L\left(\sigma_{(0)}\right)_i\right] = 0$<br>
     <b>Inductive Assumption:</b><br>
-    Assume 
+    Let the factoradic for the $n^{th}$ lexicographically smallest permutation, $\sigma_{(n)}$ be $L\left(\sigma_{(n)}\right) = \left(l_1,l_2,\ldots,l_{n-1},l_n\right)$<br>
+    And, since we are going in the lexicographic ordering of both the permutations and the factoradics (which belong to a mixed radix numeral system described above), we can say that $L\left(\sigma_{(n)}\right)$ will be of the form $\left(l_1,l_2,\ldots,l_k,n-(k+1),n-(k+2),\ldots,1,0\right)$ for some $k\in[1,n-1]$ and $l_k \neq n-k$. Therefore, $l_i = 0$ $\forall i\in[k+1,n]$.<br>
+    <b>Assume</b> that $r_n = \sum_{i=1}^n\left[(n-i)!\cdot l_i\right] = \sum_{i=1}^k\left[(n-i)!\cdot l_i\right] = n$<br>
+    Now, let's consider the factoradic, $L\left(\sigma_{(n+1)}\right)$, of the $(n+1)^{th}$ lexicographically smallest permutation $\sigma_{(n+1)}$. Now, we know that $L\left(\sigma_{(n+1)}\right)$ must be the next lexicographically bigger mixed radix number of $L\left(\sigma_{(n)}\right)$. Therefore, $L\left(\sigma_{(n+1)}\right)$ must be of the following form:
+    $$
+    \begin{eqnarray}
+        L\left(\sigma_{(n+1)}\right) &=& \left(l_1,\ldots,l_k+1,0,0,\ldots,0,0\right)\nonumber\\
+        \therefore r_{n+1} &=& \sum_{i=1}^{k-1}\left[(n-i)!\cdot l_i\right] + (n-k)! \cdot (l_k+1) \nonumber\\
+        &=& \sum_{i=1}^{n}\left[(n-i)!\cdot l_i\right] + (n-k)! \cdot (l_k+1) - (n-k)! \cdot l_k - \sum_{i=k+1}^n\left[(n-i)!\cdot (n-i)\right] \nonumber\\
+        &=& n + (n-k)! - \sum_{i=k+1}^n\left[(n-i)!\cdot (n-i)\right] \nonumber\\
+        \text{It's } &\text{easily}& \text{ proven that } \sum_{i=1}^t\left(i!\cdot i\right) = (t+1)! - 1\nonumber\\
+        \therefore r_{n+1} &=& n + (n-k)! - \left\{\left(n-(k+1)+1\right)! - 1\right\} \nonumber\\
+        \implies r_{n+1} &=& n + (n-k)! - (n-k)! + 1 \nonumber\\
+        \implies r_{n+1} &=& n+1 \nonumber
+    \end{eqnarray}
+    $$
+    Thus, by the principle of weak mathematical induction, our proof is complete.
+    <div style="text-align: right">
+    $\square$
+    </div>
     </details>
 
 ## Relevant Competitive Programming Problems:
