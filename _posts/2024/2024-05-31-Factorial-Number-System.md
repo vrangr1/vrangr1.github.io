@@ -51,7 +51,8 @@ $$
     Let the factoradic for the $n^{th}$ lexicographically smallest permutation, $\sigma_{(n)}$ be $L\left(\sigma_{(n)}\right) = \left(l_1,l_2,\ldots,l_{n-1},l_n\right)$<br>
     And, since we are going in the lexicographic ordering of both the permutations and the factoradics (which belong to a mixed radix numeral system described above), we can say that $L\left(\sigma_{(n)}\right)$ will be of the form $\left(l_1,l_2,\ldots,l_k,n-(k+1),n-(k+2),\ldots,1,0\right)$ for some $k\in[1,n-1]$ and $l_k \neq n-k$. Therefore, $l_i = 0$ $\forall i\in[k+1,n]$.<br>
     <b>Assume</b> that $r_n = \sum_{i=1}^n\left[(n-i)!\cdot l_i\right] = \sum_{i=1}^k\left[(n-i)!\cdot l_i\right] = n$<br>
-    Now, let's consider the factoradic, $L\left(\sigma_{(n+1)}\right)$, of the $(n+1)^{th}$ lexicographically smallest permutation $\sigma_{(n+1)}$. Now, we know that $L\left(\sigma_{(n+1)}\right)$ must be the next lexicographically bigger mixed radix number of $L\left(\sigma_{(n)}\right)$. Therefore, $L\left(\sigma_{(n+1)}\right)$ must be of the following form:
+    <b>Inductive Step:</b><br>
+    Let's consider the factoradic, $L\left(\sigma_{(n+1)}\right)$, of the $(n+1)^{th}$ lexicographically smallest permutation $\sigma_{(n+1)}$. Now, we know that $L\left(\sigma_{(n+1)}\right)$ must be the next lexicographically bigger mixed radix number of $L\left(\sigma_{(n)}\right)$. Therefore, $L\left(\sigma_{(n+1)}\right)$ must be of the following form:
     $$
     \begin{eqnarray}
         L\left(\sigma_{(n+1)}\right) &=& \left(l_1,\ldots,l_k+1,0,0,\ldots,0,0\right)\nonumber\\
@@ -70,4 +71,9 @@ $$
     </div>
     </details>
 
+<!-- ## Conversion:
+Now that we have defined the factoradic and some of its properties, we can go over the ways to convert the factoradic into the permutation and vice versa and, how to get either the factoradic or the permutation from the rank (in 0-indexed decimal number system) of the permutation in lexicographic order.
+### Permutation -> Factorial Number System: -->
+
 ## Relevant Competitive Programming Problems:
+-> [Codeforces Round 285 Div 2: Problem D: Misha and Permutation Summation](https://codeforces.com/contest/501/problem/D)
